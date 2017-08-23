@@ -18,9 +18,11 @@ class SupplierController extends Controller
 
     public function index(Request $request)
     {
-        $suppliers = Supplier::all();
+
+            $suppliers = Supplier::all();
+
         return view('admin.supplier.show', [
-            'suppliers' => $suppliers
+            'abc' => $suppliers
         ]);
     }
 

@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title') Category | Shop0317E @endsection
+@section('title') Purchase Invoice | Shop0317E @endsection
 @section('content')
     <div class="main-content">
         <div class="main-content-inner">
@@ -11,13 +11,13 @@
                     </li>
 
                     <li>
-                        <a href="{{ url('admin/category') }}">Category List</a>
+                        <a href="{{ url('admin/purchase') }}">Purchase Invoice List</a>
                     </li>
 
                 </ul><!-- /.breadcrumb -->
 
 
-                {!! Form::open(['method' => 'GET', 'url' => 'admin/category']) !!}
+                {!! Form::open(['method' => 'GET', 'url' => 'admin/purchase']) !!}
                 <div class="nav-search" id="nav-search">
                     <form class="form-search">
                                     <span class="input-icon">
@@ -133,7 +133,7 @@
 
                 <div class="page-header">
                     <h1>
-                        Category List
+                        Purchase Invoice List
                     </h1>
                 </div><!-- /.page-header -->
 
@@ -152,7 +152,7 @@
                     </div>
                 @endif
                 <div class="row">
-                    <a href="{{ url('admin/category/create') }}" style="font-size: 15px ; margin-left: 15px">Create
+                    <a href="{{ url('admin/purchase/create') }}" style="font-size: 15px ; margin-left: 15px">Create
                         New</a>
                     <br/><br/>
                     <div class="col-xs-12">
@@ -169,8 +169,9 @@
                                             </label>
                                         </th>
                                         <th class="detail-col">ID</th>
-                                        <th class="hidden-480">Category</th>
-                                        <th>Type</th>
+                                        <th>Supplier</th>
+                                        <th>Trade_Date</th>
+                                        <th>Total</th>
                                         <th>Action</th>
 
                                     </tr>
@@ -183,31 +184,11 @@
                                                     <input type="checkbox"/>
                                                 </td>
                                                 <td>{{ $item->id }}</td>
-                                                <td>{{ $item->title }}</td>
-                                                <td>@if($item->type_id == 1)
-                                                        {{ $item->type_id = "LINH KIỆN MÁY TÍNH" }}
-                                                    @elseif($item->type_id == 2)
-                                                        {{ $item->type_id = "MÁY TÍNH XÁCH TAY" }}
-                                                    @elseif($item->type_id == 3)
-                                                        {{ $item->type_id = "MÁY TÍNH ĐỂ BÀN" }}
-                                                    @elseif($item->type_id == 4)
-                                                        {{ $item->type_id = "GAMEGEAR-COOLING" }}
-                                                    @elseif($item->type_id == 5)
-                                                        {{ $item->type_id = "GAMES NET" }}
-                                                    @elseif($item->type_id == 6)
-                                                        {{ $item->type_id = "THIẾT BỊ NGHE NHÌN" }}
-                                                    @elseif($item->type_id == 7)
-                                                        {{ $item->type_id = "THIẾT BỊ LƯU TRỮ" }}
-                                                    @elseif($item->type_id == 8)
-                                                        {{ $item->type_id = "THIẾT BỊ MẠNG" }}
-                                                    @elseif($item->type_id == 9)
-                                                        {{ $item->type_id = "THIẾT BỊ VĂN PHÒNG" }}
-                                                    @elseif($item->type_id == 10)
-                                                        {{ $item->type_id = "THIẾT BỊ KHÁC" }}
-                                                    @endif</td>
-                                                <td>
-                                                    {!! Form::open([ 'method'=>'DELETE' , 'url' =>'admin/category/'.$item->id,'role'=>'from' ]) !!}
-                                                    <a href="{{ url('admin/category/'.$item->id.'/edit') }}"
+                                                <td>{{ $item->supplier->name }}</td>
+                                                <td>{{ $item->trade_date }}</td>
+                                                <td>{{ $item->total }}</td>
+                                                <td>{!! Form::open([ 'method'=>'DELETE' , 'url' =>'admin/purchase/'.$item->id,'role'=>'from' ]) !!}
+                                                    <a href="{{ url('admin/purchase/'.$item->id.'/edit') }}"
                                                        class="btn">Edit</a>
                                                     <button type="submit" value="DELETE"
                                                             onclick="return confirm('Are you sure?');">DELETE

@@ -5,8 +5,12 @@
                 <div class="col-sm-6">
                     <div class="contactinfo">
                         <ul class="nav nav-pills">
-                            <li><a href="#"><i class="fa fa-phone"></i> +84 92 95 97</a></li>
-                            <li><a href="#"><i class="fa fa-envelope"></i> shop0317e@ITplus.com</a></li>
+                            @if(Auth::check())
+                                <li><a href="#">{{ Auth::user()->name }}</a></li>
+                            @else
+                                <li><a href="#"><i class="fa fa-phone"></i> 0908 92 95 97</a></li>
+                            @endif
+                            <li><a href="#"><i class="fa fa-envelope"></i> shop0317e@ITplus.com </a></li>
                         </ul>
                     </div>
                 </div>
@@ -31,7 +35,7 @@
                 <div class="col-sm-4">
                     <div class="logo pull-left">
                         <a href="{{ url('home') }}"><img src="{{ asset('source/images/home/logo.png') }}"
-                                                                                    alt=""></a>
+                                                         alt=""></a>
                     </div>
                 </div>
                 <div class="col-sm-8">
@@ -41,9 +45,9 @@
                             <li><a href="{{url('contact')}}"><i class="fa fa-star"></i> Liên Hệ</a></li>
                             <li><a href="{{url('cart')}}"><i class="fa fa-crosshairs"></i> Kiểm Tra Đơn Hàng</a></li>
                             @if(Auth::check())
-                                <li><a href="{{url('logout')}}"><i class="fa fa-lock"></i>Đăng Xuất</a></li>
+                                <li><a href="{{url('logout')}}"><i class="fa fa-out"></i> Đăng Xuất</a></li>
                             @else
-                                <li><a href="{{url('login')}}"><i class="fa fa-lock"></i>Đăng Nhập</a></li>
+                                <li><a href="{{url('login')}}"><i class="fa fa-lock"></i> Đăng Nhập</a></li>
                             @endif
                         </ul>
                     </div>
@@ -72,6 +76,7 @@
                                 <ul role="menu" class="sub-menu">
                                     <li><a href="{{ url('product_type') }}">Sản Phẩm</a></li>
                                     <li><a href="{{ url('cart') }}">Kiểm Tra Đơn Hàng</a></li>
+                                    <li><a href="{{ url('login') }}">Đăng Nhập</a></li>
                                 </ul>
                             </li>
                             <li><a href="{{ url('news') }}">Khuyến Mãi</a></li>
@@ -84,13 +89,14 @@
                         <input type="text" placeholder="Tìm Kiếm">
 
                         <ul class="bag">
-                            <a href="{{ url('cart') }}" style="margin-right: 5px; margin-left: -31px;"><img src="{{ asset('source/images/giohang.jpg') }}"  /></a>
+                            <a href="{{ url('cart') }}" style="margin-right: 5px; margin-left: -31px;"><img
+                                        src="{{ asset('source/images/giohang.jpg') }}"/></a>
                             <a href="{{ url('cart') }}">
                                 <li class="bag_right"><p>
                                         <?php $total = 0; ?>
                                         @if(Cart::content())
                                             @foreach(Cart::content() as $item)
-                                                <?php $total = $total + $item->price*$item->qty; ?>
+                                                <?php $total = $total + $item->price * $item->qty; ?>
                                             @endforeach
                                         @endif
                                         {{ number_format($total) }}

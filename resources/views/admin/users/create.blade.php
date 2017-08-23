@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title')  Create Product| Shop0317E  @endsection
+@section('title')  Create User | Shop0317E  @endsection
 @section('content')
 <div class="main-content">
     <div class="main-content-inner">
@@ -11,7 +11,7 @@
                 </li>
 
                 <li>
-                    <a href="{{ url('admin/product') }}">Product</a>
+                    <a href="{{ url('admin/users') }}">User</a>
                 </li>
                 <li class="active">Create</li>
             </ul><!-- /.breadcrumb -->
@@ -58,7 +58,6 @@
                                     </ul>
                                 </div>
                             </div>
-<<<<<<< HEAD
                             <span>&nbsp; Choose Skin</span>
                         </div>
 
@@ -120,70 +119,66 @@
 
             <div class="page-header">
                 <h1>
-                    Create Product
+                    Create User
                 </h1>
             </div><!-- /.page-header -->
 
             <div class="row">
                 <div class="col-xs-12">
                     <!-- PAGE CONTENT BEGINS -->
-                    {!! Form::open(['method' => 'POST', 'url' => 'admin/product', 'files' => true, 'role' => 'form']) !!}
-                    @include('admin.product.form')
-                    {!! Form::close() !!}
-
-                    <div class="space-4"></div>
-                    </form>
-=======
-                        </div><!-- /.pull-left -->
-                    </div><!-- /.ace-settings-box -->
-                </div><!-- /.ace-settings-container -->
-
-                <div class="page-header">
-                    <h1>
-                        Create Product
-                    </h1>
-                </div><!-- /.page-header -->
-
-                <div class="row">
-                    <div class="col-xs-12">
-                        <!-- PAGE CONTENT BEGINS -->
-                        {!! Form::open(['method' => 'POST', 'url' => 'admin/product', 'files' => true]) !!}
+                    {!! Form::open(['type' => 'POST', 'url' => 'admin/users', 'role' => 'form']) !!}
+                    <form class="form-horizontal" id="createForm" role="form">
                         <div class="form-group">
-                            <label>Title</label>
-                            {!! Form::text('name', null, [ 'class' => 'form-control', 'placeholder' => "Title"]) !!}
-                        </div>
-                        <div class="form-group">
-                            <label>Category</label>
-                            {!! Form::select('category_id', $categories, null, ["class" => "form-control"]) !!}
-                        </div>
-                        <div class="form-group">
-                            <label>Price</label>
-                            {!! Form::number('price', '0', [ 'class' => 'form-control', 'value'=>'0']) !!}
-                        </div>
-                        <div class="form-group">
-                            <label>Sale</label>
-                            {!! Form::number('sale', '0', [ 'class' => 'form-control', 'value'=>'0']) !!}
-                        </div>
-                        <div class="form-group">
-                            <label>Inventory Number</label>
-                            {!! Form::number('inventorynumber', '0', [ 'class' => 'form-control', 'value'=>'0']) !!}
-                        </div>
-                        <div class="form-group">
-                            <label>Thumbnail</label>
-                            {!! Form::file('thumbnail', ["class" => "form-control"]) !!}
-                        </div>
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Name *</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="name" id="form-field-1" minlength="5" placeholder="User Name" class="col-xs-10 col-sm-5" required>
+                            </div>
+                        </div><br/><br/>
 
                         <div class="form-group">
-                            <label>Description</label>
-                            {!! Form::text('des', null, [ 'class' => 'form-control', 'placeholder' => "description"]) !!}
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Address </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="address" id="form-field-1" placeholder="Adress"
+                                       class="col-xs-10 col-sm-5">
+                            </div>
+                        </div><br/><br/>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Phone *</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="phoneNumber" pattern="(\+84|0)\d{9,10}" id="phoneNumber" placeholder="Phone Numer"
+                                       class="col-xs-10 col-sm-5" required >
+                            </div>
+                        </div><br/><br/>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1">GROUP</label>
+                            <div class="col-sm-9">
+                                <select name="group_id">
+                                    <option value="1">ADMIN</option>
+                                    <option value="2">USER</option>
+                                </select>
+                            </div>
+                        </div><br/><br/>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1">POSITION</label>
+                            <div class="col-sm-9">
+                                <select name="position_id">
+                                    <option value="1">NHÂN VIÊN </option>
+                                    <option value="2">KHÁCH HÀNG</option>
+                                </select>
+                            </div>
+                        </div><br/><br/>
+
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <input type="submit" class="btnSave" value="Save"  />
+                            </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Save</button>
                         {!! Form::close() !!}
-
                         <div class="space-4"></div>
-                        </form>
-                    </div>
->>>>>>> c481f4b615e8b806834c6caec2b0d03e9c273e40
+                    </form>
                 </div>
             </div>
         </div>

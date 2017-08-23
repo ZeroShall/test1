@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title')  Create Product| Shop0317E  @endsection
+@section('name') Edit User @endsection
 @section('content')
 <div class="main-content">
     <div class="main-content-inner">
@@ -11,9 +11,9 @@
                 </li>
 
                 <li>
-                    <a href="{{ url('admin/product') }}">Product</a>
+                    <a href="{{ url('admin/users') }}">User</a>
                 </li>
-                <li class="active">Create</li>
+                <li class="active">Edit</li>
             </ul><!-- /.breadcrumb -->
 
             <div class="nav-search" id="nav-search">
@@ -58,7 +58,6 @@
                                     </ul>
                                 </div>
                             </div>
-<<<<<<< HEAD
                             <span>&nbsp; Choose Skin</span>
                         </div>
 
@@ -120,74 +119,79 @@
 
             <div class="page-header">
                 <h1>
-                    Create Product
+                    Edit " {{ $cate->name }} " User
                 </h1>
             </div><!-- /.page-header -->
 
             <div class="row">
                 <div class="col-xs-12">
                     <!-- PAGE CONTENT BEGINS -->
-                    {!! Form::open(['method' => 'POST', 'url' => 'admin/product', 'files' => true, 'role' => 'form']) !!}
-                    @include('admin.product.form')
-                    {!! Form::close() !!}
-
-                    <div class="space-4"></div>
-                    </form>
-=======
-                        </div><!-- /.pull-left -->
-                    </div><!-- /.ace-settings-box -->
-                </div><!-- /.ace-settings-container -->
-
-                <div class="page-header">
-                    <h1>
-                        Create Product
-                    </h1>
-                </div><!-- /.page-header -->
-
-                <div class="row">
-                    <div class="col-xs-12">
-                        <!-- PAGE CONTENT BEGINS -->
-                        {!! Form::open(['method' => 'POST', 'url' => 'admin/product', 'files' => true]) !!}
+                    {!! Form::open(['method' => 'PATCH', 'url' => 'admin/users/' . $cate->id, 'role' => 'form']) !!}
+                    <form class="form-horizontal" role="form">
                         <div class="form-group">
-                            <label>Title</label>
-                            {!! Form::text('name', null, [ 'class' => 'form-control', 'placeholder' => "Title"]) !!}
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Name </label>
+                            <div class="col-sm-9">
+                                <input type="text" id="form-field-1"
+                                       placeholder="{{ $cate->name }}"
+                                       name="name" minlength=""
+                                       class="col-xs-10 col-sm-5"
+                                       value="{{ $cate->name }}" />
+                            </div>
                         </div>
+                        <br/><br/>
                         <div class="form-group">
-                            <label>Category</label>
-                            {!! Form::select('category_id', $categories, null, ["class" => "form-control"]) !!}
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Address </label>
+                            <div class="col-sm-9">
+                                <input type="text" id="form-field-1"
+                                       placeholder="{{ $cate->address }}"
+                                       name="address"
+                                       class="col-xs-10 col-sm-5"
+                                       value="{{ $cate->address }}" />
+                            </div>
                         </div>
+                        <br/><br/>
                         <div class="form-group">
-                            <label>Price</label>
-                            {!! Form::number('price', '0', [ 'class' => 'form-control', 'value'=>'0']) !!}
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Phone </label>
+                            <div class="col-sm-9">
+                                <input type="text" id="form-field-1"
+                                       placeholder="{{ $cate->phone }}"
+                                       name="phone" pattern="(\+84|0)\d{9,10}" minlength="10" maxlength="10"
+                                       class="col-xs-10 col-sm-5"
+                                       value="{{ $cate->phone }}" />
+                            </div>
                         </div>
+                        <br/><br/>
                         <div class="form-group">
-                            <label>Sale</label>
-                            {!! Form::number('sale', '0', [ 'class' => 'form-control', 'value'=>'0']) !!}
-                        </div>
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1">Type</label>
+                            <div class="col-sm-9">
+                                <select name="group_id">
+                                    <option value="1" @if( $cate->group_id == "1" ) selected @endif >ADMIN</option>
+                                    <option value="2" @if( $cate->group_id == "2" ) selected @endif >USER</option>
+                                </select>
+                            </div>
+                        </div><br/><br/>
                         <div class="form-group">
-                            <label>Inventory Number</label>
-                            {!! Form::number('inventorynumber', '0', [ 'class' => 'form-control', 'value'=>'0']) !!}
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1">Type</label>
+                            <div class="col-sm-9">
+                                <select name="position_id">
+                                    <option value="1" @if( $cate->position_id == "1" ) selected @endif >NHÂN VIÊN</option>
+                                    <option value="2" @if( $cate->position_id == "2" ) selected @endif >KHÁCH HÀNG</option>
+                                </select>
+                            </div>
                         </div>
+                        <br/><br/>
                         <div class="form-group">
-                            <label>Thumbnail</label>
-                            {!! Form::file('thumbnail', ["class" => "form-control"]) !!}
+                            <div class="col-sm-9">
+                                <input type="submit" class="btnSave" value="Update"/>
+                            </div>
                         </div>
-
-                        <div class="form-group">
-                            <label>Description</label>
-                            {!! Form::text('des', null, [ 'class' => 'form-control', 'placeholder' => "description"]) !!}
-                        </div>
-                        <button type="submit" class="btn btn-primary">Save</button>
                         {!! Form::close() !!}
 
                         <div class="space-4"></div>
-                        </form>
-                    </div>
->>>>>>> c481f4b615e8b806834c6caec2b0d03e9c273e40
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 @endsection

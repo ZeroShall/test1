@@ -7,27 +7,34 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Category;
 use App\Product;
-use App\Http\Requests\ProductEditRequest;
 use Session;
+
+
 
 class ProductController extends Controller
 {
-    private $_categories;
+    private $_cates = [];
+
     public function __construct()
     {
-        $this->_categories = Category::get()->pluck('title','id');
+        $categories = Category::all();
+        foreach ($categories as $category) {
+            $this->_cates[$category->id] = $category->title;
+        }
     }
 
     public function index(Request $request)
     {
         if ($request->has('keyword')) {
+
             $keyword = $request->get('keyword');
-            $products = Product::with('category')->where('name', 'like', '%' . $keyword . '%')->get();
+            $product = Product::where('name', 'like', '%' . $keyword . '%')->get();
         } else {
-            $products = Product::with('category')->get();
+            $product = Product::all();
         }
-        //dd($products);
-        return view('admin.product.show', compact('products'));
+        return view('admin.product.show', [
+            'abc' => $product
+        ]);
     }
 
     /**
@@ -37,9 +44,18 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.product.create', ['categories'=> $this->_categories]);
+        return view('admin.product.create',
+            ['categories' => $this->_cates]
+        );
+
     }
-    
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         $thumbnail = 'no-image.jpg';
@@ -52,15 +68,19 @@ class ProductController extends Controller
         $product = new Product();
         $product->name = $request->name;
         $product->thumbnail = $thumbnail;
-        $product->category_id = $request->category;
+        $product->category_id = $request->category_id;
         $product->price = $request->price;
         $product->sale = $request->sale;
         $product->inventorynumber = $request->inventorynumber;
         $product->des = $request->des;
         $product->save();
-        Session::flash('success', 'Create Product "' .  $product->name . '" succesfully!');
+        Session::flash('success', " Create " .  $product->name . " succesfully ! ");
 
         return redirect('admin/product');
+
+
+
+
     }
 
     /**
@@ -83,8 +103,12 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
-        //dd($product);
-        return view('admin.product.edit', ['product' => $product, 'categories' => $this->_categories]);
+
+        return view('admin.product.edit', [
+                'product' => $product,
+                'categories' => $this->_cates,
+            ]
+        );
     }
 
     /**
@@ -94,25 +118,28 @@ class ProductController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductEditRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $product = Product::findOrFail($id);
         $thumbnail = $product->thumbnail;
+
         if ($request->hasFile('thumbnail')) {
             $file = $request->file('thumbnail');
             $thumbnail = $file->getClientOriginalName();
             $path = public_path('uploads/product');
             $file->move($path, $thumbnail);
         }
+
+        $product = Product::findOrFail($id);
         $product->name = $request->name;
         $product->thumbnail = $thumbnail;
-        $product->category_id = $request->category;
+        $product->category_id = $request->category_id;
         $product->price = $request->price;
         $product->sale = $request->sale;
         $product->inventorynumber = $request->inventorynumber;
         $product->des = $request->des;
         $product->save();
-        Session::flash('success', 'Edit Product "' . $product->name . '" successfully!');
+        Session::flash('success', "Edit " . $product->name . " successfully!!!");
 
         return redirect('admin/product');
     }
@@ -125,10 +152,11 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
+
         $product = Product::findOrFail($id);
-        unlink('uploads/product/'.$product->thumbnail);
-        $product->delete();
-        Session::flash('success', 'Delete Product "' .  $product->name . '" succesfully!');
+        Session::flash('success', "Delete " .  $product->name . " succesfully");
+         $product->delete();
+
         return redirect('admin/product');
     }
 }

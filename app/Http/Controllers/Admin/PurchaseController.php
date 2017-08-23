@@ -3,23 +3,23 @@
 namespace App\Http\Controllers\Admin;
 
 
-use App\Users;
+use App\Supplier;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Export;
+use App\Purchase;
 use Session;
 
 
 
-class ExportController extends Controller
+class PurchaseController extends Controller
 {
-    private $_users = [];
+    private $_sups = [];
 
     public function __construct()
     {
-        $users = Users::all();
-        foreach ($users as $user) {
-            $this->_users[$user->id] = $user->name;
+        $suppliers = Supplier::all();
+        foreach ($suppliers as $supplier) {
+            $this->_sups[$supplier->id] = $supplier->name;
         }
     }
 
@@ -28,12 +28,12 @@ class ExportController extends Controller
         if ($request->has('keyword')) {
 
             $keyword = $request->get('keyword');
-            $export = Export::where('trade_date', 'like', '%' . $keyword . '%')->get();
+            $purchase = Purchase::where('trade_date', 'like', '%' . $keyword . '%')->get();
         } else {
-            $export = Export::all();
+            $purchase = Purchase::all();
         }
-        return view('admin.export.show', [
-            'abc' => $export
+        return view('admin.purchase.show', [
+            'abc' => $purchase
         ]);
     }
 
@@ -44,8 +44,8 @@ class ExportController extends Controller
      */
     public function create()
     {
-        return view('admin.export.create',
-            ['users' => $this->_users]
+        return view('admin.purchase.create',
+            ['suppliers' => $this->_sups]
         );
 
     }
@@ -60,14 +60,14 @@ class ExportController extends Controller
     {
         
         
-        $export = new Export();
-        $export->user_id = $request->user_id;
-        $export->trade_date = $request->trade_date;
-        $export->total = $request->total;
-        $export->save();
-        Session::flash('success', " Create Export Invoice Succesfully ! ");
+        $purchase = new Purchase();
+        $purchase->supplier_id = $request->supplier_id;
+        $purchase->trade_date = $request->trade_date;
+        $purchase->total = $request->total;
+        $purchase->save();
+        Session::flash('success', " Create Purchase Invoice Succesfully ! ");
 
-        return redirect('admin/export');
+        return redirect('admin/purchase');
 
 
 
@@ -93,11 +93,11 @@ class ExportController extends Controller
      */
     public function edit($id)
     {
-        $export = Export::findOrFail($id);
+        $purchase = Purchase::findOrFail($id);
 
-        return view('admin.export.edit', [
-                'exports' => $export,
-                'users' => $this->_users,
+        return view('admin.purchase.edit', [
+                'purchases' => $purchase,
+                'suppliers' => $this->_sups,
             ]
         );
     }
@@ -111,17 +111,17 @@ class ExportController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $export = Export::findOrFail($id);
+        $purchase = Purchase::findOrFail($id);
 
 
-        $export = Export::findOrFail($id);
-        $export->user_id = $request->user_id;
-        $export->trade_date = $request->trade_date;
-        $export->total = $request->total;
-        $export->save();
+        $purchase = Purchase::findOrFail($id);
+        $purchase->supplier_id = $request->supplier_id;
+        $purchase->trade_date = $request->trade_date;
+        $purchase->total = $request->total;
+        $purchase->save();
         Session::flash('success', "Edit  successfully!!!");
 
-        return redirect('admin/export');
+        return redirect('admin/purchase');
     }
 
     /**
@@ -133,10 +133,10 @@ class ExportController extends Controller
     public function destroy($id)
     {
 
-        $export = Export::findOrFail($id);
+        $purchase = Purchase::findOrFail($id);
         Session::flash('success', "Delete  succesfully");
-         $export->delete();
+         $purchase->delete();
 
-        return redirect('admin/export');
+        return redirect('admin/purchase');
     }
 }

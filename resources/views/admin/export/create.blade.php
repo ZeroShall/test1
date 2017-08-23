@@ -1,5 +1,5 @@
-@extends('layouts.admin.layout')
-@section('title') Create Export Invoice @endsection
+@extends('layouts.admin')
+@section('title')  Create Export Invoice| Shop0317E  @endsection
 @section('content')
     <div class="main-content">
         <div class="main-content-inner">

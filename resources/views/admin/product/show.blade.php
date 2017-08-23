@@ -1,5 +1,5 @@
-@extends('layouts.admin.layout')
-@section('title') Products | Shop Computer @endsection
+@extends('layouts.admin')
+@section('title') Product | Shop0317E @endsection
 @section('content')
     <div class="main-content">
         <div class="main-content-inner">
@@ -7,40 +7,47 @@
                 <ul class="breadcrumb">
                     <li>
                         <i class="ace-icon fa fa-home home-icon"></i>
-                        <a href="{{url('admin')}}">Home</a>
+                        <a href="{{url('home')}}">Home</a>
                     </li>
 
                     <li>
                         <a href="{{ url('admin/product') }}">Product List</a>
                     </li>
+
                 </ul><!-- /.breadcrumb -->
 
+
+                {!! Form::open(['method' => 'GET', 'url' => 'admin/product']) !!}
                 <div class="nav-search" id="nav-search">
-                    {!! Form::open(['method' => 'GET', 'url' => 'admin/product', 'class' => 'form-search']) !!}
+                    <form class="form-search">
                     <span class="input-icon">
-                        {!! Form::text('keyword', Request::has('keyword') ? Request::get('keyword'): null, ['class' => 'nav-search-input', 'placeholder' => 'Search ...']) !!}
-                        <i class="ace-icon fa fa-search nav-search-icon"></i>
-                        <button type="submit">Search</button>
+                        <input type="text"
+                               name="keyword"
+                               @if(Request::has('keyword'))
+                               value="{{ Request::get('keyword') }}"
+                               @endif
+                               class="nav-search-input"
+                               id="nav-search-input"
+                               placeholder="Search ..."
+
+                        />
+                               <i class="ace-icon fa fa-search nav-search-icon"></i>
+                        <button type="submit" id="btnSearch">Search</button>
                     </span>
-                    {!! Form::close() !!}
+                    </form>
                 </div>
                 <!-- /.nav-search -->
+                {!! Form::close() !!}
+
             </div>
 
             <div class="page-content">
-                <div class="ace-settings-container" id="ace-settings-container">
-                    <div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
-                        <i class="ace-icon fa fa-cog bigger-130"></i>
-                    </div>
 
-                @include('patials.admin.ace-settings')<!-- /.ace-settings-box -->
-                </div><!-- /.ace-settings-container -->
 
                 <div class="page-header">
                     <h1>
                         Product List
                     </h1>
-
                 </div><!-- /.page-header -->
 
                 @if(Session::has('success'))
@@ -55,7 +62,6 @@
                                 {{ Session::get('success') }}
                             </strong>
                         </p>
-
                     </div>
                 @endif
                 <div class="row">
@@ -78,17 +84,18 @@
                                         <th class="detail-col">ID</th>
                                         <th>Name</th>
                                         <th>Thumbnail</th>
-                                        <th>Category</th>
+                                        <th>Type</th>
                                         <th>Price</th>
                                         <th>Sale</th>
                                         <th>Inventory Number</th>
                                         <th>Description</th>
                                         <th>Action</th>
+
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @if($products)
-                                        @foreach($products as $item)
+                                    @if($abc)
+                                        @foreach($abc as $item)
                                             <tr>
                                                 <td>
                                                     <input type="checkbox"/>
@@ -96,17 +103,17 @@
                                                 <td>{{ $item->id }}</td>
                                                 <td>{{ $item->name }}</td>
                                                 <td>
-                                                    <img src="{{ file_exists('uploads/product/'.$item->thumbnail)?url('uploads/product/'.$item->thumbnail):url('uploads/product/no-images.png') }}"
-                                                         alt="" width="120"/>
+                                                    <img src="{{ url('uploads/product/' . $item->thumbnail) }}" alt=""
+                                                         width="120" />
                                                 </td>
                                                 <td>{{ $item->category->title }}</td>
                                                 <td>{{ $item->price }}</td>
                                                 <td>{{ $item->sale }}</td>
                                                 <td>{{ $item->inventorynumber }}</td>
                                                 <td>{{ $item->des }}</td>
-                                                <td>
-                                                    {!! Form::open([ 'method'=>'DELETE' , 'url' =>'admin/product/'.$item->id,'role'=>'from' ]) !!}
-                                                    <a href="{{ url('admin/product/'.$item->id.'/edit') }}" class="btn">Edit</a>
+                                                <td>{!! Form::open([ 'method'=>'DELETE' , 'url' =>'admin/product/'.$item->id,'role'=>'from' ]) !!}
+                                                    <a href="{{ url('admin/product/'.$item->id.'/edit') }}"
+                                                       class="btn">Edit</a>
                                                     <button type="submit" value="DELETE"
                                                             onclick="return confirm('Are you sure?');">DELETE
                                                     </button>
@@ -119,7 +126,148 @@
                                 </table>
                             </div><!-- /.span -->
                         </div><!-- /.row -->
-                    </div>    <!-- /.page-content -->
+                        <div id="modal-table" class="modal fade" tabindex="-1">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header no-padding">
+                                        <div class="table-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                <span class="white">×</span>
+                                            </button>
+                                            {!! Form::close() !!}
+<<<<<<< HEAD
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div><!-- /.span -->
+                    </div><!-- /.row -->
+=======
+>>>>>>> c481f4b615e8b806834c6caec2b0d03e9c273e40
+
+                                        </div><!-- /.span -->
+                                    </div><!-- /.row -->
+
+
+                                    <div id="modal-table" class="modal fade" tabindex="-1">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header no-padding">
+                                                    <div class="table-header">
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-hidden="true">
+                                                            <span class="white">×</span>
+                                                        </button>
+                                                        Results for "Latest Registered Domains
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-body no-padding">
+                                                    <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Domain</th>
+                                                            <th>Price</th>
+                                                            <th>Clicks</th>
+
+                                                            <th>
+                                                                <i class="ace-icon fa fa-clock-o bigger-110"></i>
+                                                                Update
+                                                            </th>
+                                                        </tr>
+                                                        </thead>
+
+                                                        <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <a href="#">ace.com</a>
+                                                            </td>
+                                                            <td>$45</td>
+                                                            <td>3,330</td>
+                                                            <td>Feb 12</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>
+                                                                <a href="#">base.com</a>
+                                                            </td>
+                                                            <td>$35</td>
+                                                            <td>2,595</td>
+                                                            <td>Feb 18</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>
+                                                                <a href="#">max.com</a>
+                                                            </td>
+                                                            <td>$60</td>
+                                                            <td>4,400</td>
+                                                            <td>Mar 11</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>
+                                                                <a href="#">best.com</a>
+                                                            </td>
+                                                            <td>$75</td>
+                                                            <td>6,500</td>
+                                                            <td>Apr 03</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>
+                                                                <a href="#">pro.com</a>
+                                                            </td>
+                                                            <td>$55</td>
+                                                            <td>4,250</td>
+                                                            <td>Jan 21</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                                <div class="modal-footer no-margin-top">
+                                                    <button class="btn btn-sm btn-danger pull-left"
+                                                            data-dismiss="modal">
+                                                        <i class="ace-icon fa fa-times"></i>
+                                                        Close
+                                                    </button>
+
+                                                    <ul class="pagination pull-right no-margin">
+                                                        <li class="prev disabled">
+                                                            <a href="#">
+                                                                <i class="ace-icon fa fa-angle-double-left"></i>
+                                                            </a>
+                                                        </li>
+
+                                                        <li class="active">
+                                                            <a href="#">1</a>
+                                                        </li>
+
+                                                        <li>
+                                                            <a href="#">2</a>
+                                                        </li>
+
+                                                        <li>
+                                                            <a href="#">3</a>
+                                                        </li>
+
+                                                        <li class="next">
+                                                            <a href="#">
+                                                                <i class="ace-icon fa fa-angle-double-right"></i>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div><!-- /.modal-content -->
+                                        </div><!-- /.modal-dialog -->
+                                    </div>
+
+                                    <!-- PAGE CONTENT ENDS -->
+                                </div><!-- /.col -->
+                            </div><!-- /.row -->
+                        </div><!-- /.page-content -->
+                    </div>
                 </div>
             </div>
         </div>

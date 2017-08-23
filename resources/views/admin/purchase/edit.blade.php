@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title') Edit Product @endsection
+@section('title') Edit Purchase Invoice @endsection
 @section('content')
     <div class="main-content">
         <div class="main-content-inner">
@@ -11,7 +11,7 @@
                     </li>
 
                     <li>
-                        <a href="{{ url('admin/product') }}">Product</a>
+                        <a href="{{ url('admin/purchase') }}">Purchase Invoice</a>
                     </li>
                     <li class="active">Edit</li>
                 </ul><!-- /.breadcrumb -->
@@ -28,25 +28,19 @@
             </div>
 
             <div class="page-content">
-                <div class="ace-settings-container" id="ace-settings-container">
-                    <div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
-                        <i class="ace-icon fa fa-cog bigger-130"></i>
-                    </div>
 
-
-                </div><!-- /.ace-settings-container -->
 
                 <div class="page-header">
                     <h1>
-                        Edit " {{ $product->name }} " Product
+                        Edit  Purchase Invoice
                     </h1>
                 </div><!-- /.page-header -->
 
                 <div class="row">
                     <div class="col-xs-12">
                         <!-- PAGE CONTENT BEGINS -->
-                        {!! Form::model( $product, ['method' => 'PATCH', 'url' => ['admin/product', $product->id], 'files' => true, 'role' => 'form']) !!}
-                            @include('admin.product.form')
+                        {!! Form::model( $purchases, ['method' => 'PATCH', 'url' => ['admin/purchase', $purchases->id], 'role' => 'form']) !!}
+                            @include('admin.purchase.form')
                         {!! Form::close() !!}
 
                         <div class="space-4"></div>

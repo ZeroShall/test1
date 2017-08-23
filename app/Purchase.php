@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Created by PhpStorm.
  * User: VCCORP
@@ -9,18 +8,12 @@
 
 namespace App;
 
+
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Purchase extends Model
 {
-
-    public function category()
-    {
-        return $this->belongsTo('App\Category');
-    }
-
-    public function supplier()
-    {
+    public function Supplier(){
         return $this->belongsTo('App\Supplier');
     }
 }

@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title') Category | Shop0317E @endsection
+@section('title') Users | Shop0317E @endsection
 @section('content')
     <div class="main-content">
         <div class="main-content-inner">
@@ -11,13 +11,13 @@
                     </li>
 
                     <li>
-                        <a href="{{ url('admin/category') }}">Category List</a>
+                        <a href="{{ url('admin/users') }}">User List</a>
                     </li>
 
                 </ul><!-- /.breadcrumb -->
 
 
-                {!! Form::open(['method' => 'GET', 'url' => 'admin/category']) !!}
+                {!! Form::open(['method' => 'GET', 'url' => 'admin/users']) !!}
                 <div class="nav-search" id="nav-search">
                     <form class="form-search">
                                     <span class="input-icon">
@@ -42,98 +42,11 @@
             </div>
 
             <div class="page-content">
-                <div class="ace-settings-container" id="ace-settings-container">
-                    <div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
-                        <i class="ace-icon fa fa-cog bigger-130"></i>
-                    </div>
 
-                    <div class="ace-settings-box clearfix" id="ace-settings-box">
-                        <div class="pull-left width-50">
-                            <div class="ace-settings-item">
-                                <div class="pull-left">
-                                    <select id="skin-colorpicker" class="hide">
-                                        <option data-skin="no-skin" value="#438EB9">#438EB9</option>
-                                        <option data-skin="skin-1" value="#222A2D">#222A2D</option>
-                                        <option data-skin="skin-2" value="#C6487E">#C6487E</option>
-                                        <option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
-                                    </select>
-                                    <div class="dropdown dropdown-colorpicker"><a data-toggle="dropdown"
-                                                                                  class="dropdown-toggle"><span
-                                                    class="btn-colorpicker" style="background-color:#438EB9"></span></a>
-                                        <ul class="dropdown-menu dropdown-caret">
-                                            <li><a class="colorpick-btn selected" style="background-color:#438EB9;"
-                                                   data-color="#438EB9"></a></li>
-                                            <li><a class="colorpick-btn" style="background-color:#222A2D;"
-                                                   data-color="#222A2D"></a></li>
-                                            <li><a class="colorpick-btn" style="background-color:#C6487E;"
-                                                   data-color="#C6487E"></a></li>
-                                            <li><a class="colorpick-btn" style="background-color:#D0D0D0;"
-                                                   data-color="#D0D0D0"></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <span>&nbsp; Choose Skin</span>
-                            </div>
-
-                            <div class="ace-settings-item">
-                                <input type="checkbox" class="ace ace-checkbox-2 ace-save-state"
-                                       id="ace-settings-navbar" autocomplete="off">
-                                <label class="lbl" for="ace-settings-navbar"> Fixed Navbar</label>
-                            </div>
-
-                            <div class="ace-settings-item">
-                                <input type="checkbox" class="ace ace-checkbox-2 ace-save-state"
-                                       id="ace-settings-sidebar" autocomplete="off">
-                                <label class="lbl" for="ace-settings-sidebar"> Fixed Sidebar</label>
-                            </div>
-
-                            <div class="ace-settings-item">
-                                <input type="checkbox" class="ace ace-checkbox-2 ace-save-state"
-                                       id="ace-settings-breadcrumbs" autocomplete="off">
-                                <label class="lbl" for="ace-settings-breadcrumbs"> Fixed Breadcrumbs</label>
-                            </div>
-
-                            <div class="ace-settings-item">
-                                <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-rtl"
-                                       autocomplete="off">
-                                <label class="lbl" for="ace-settings-rtl"> Right To Left (rtl)</label>
-                            </div>
-
-                            <div class="ace-settings-item">
-                                <input type="checkbox" class="ace ace-checkbox-2 ace-save-state"
-                                       id="ace-settings-add-container" autocomplete="off">
-                                <label class="lbl" for="ace-settings-add-container">
-                                    Inside
-                                    <b>.container</b>
-                                </label>
-                            </div>
-                        </div><!-- /.pull-left -->
-
-                        <div class="pull-left width-50">
-                            <div class="ace-settings-item">
-                                <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-hover"
-                                       autocomplete="off">
-                                <label class="lbl" for="ace-settings-hover"> Submenu on Hover</label>
-                            </div>
-
-                            <div class="ace-settings-item">
-                                <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-compact"
-                                       autocomplete="off">
-                                <label class="lbl" for="ace-settings-compact"> Compact Sidebar</label>
-                            </div>
-
-                            <div class="ace-settings-item">
-                                <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-highlight"
-                                       autocomplete="off">
-                                <label class="lbl" for="ace-settings-highlight"> Alt. Active Item</label>
-                            </div>
-                        </div><!-- /.pull-left -->
-                    </div><!-- /.ace-settings-box -->
-                </div><!-- /.ace-settings-container -->
 
                 <div class="page-header">
                     <h1>
-                        Category List
+                        User List
                     </h1>
                 </div><!-- /.page-header -->
 
@@ -152,7 +65,7 @@
                     </div>
                 @endif
                 <div class="row">
-                    <a href="{{ url('admin/category/create') }}" style="font-size: 15px ; margin-left: 15px">Create
+                    <a href="{{ url('admin/users/create') }}" style="font-size: 15px ; margin-left: 15px">Create
                         New</a>
                     <br/><br/>
                     <div class="col-xs-12">
@@ -169,8 +82,11 @@
                                             </label>
                                         </th>
                                         <th class="detail-col">ID</th>
-                                        <th class="hidden-480">Category</th>
-                                        <th>Type</th>
+                                        <th class="hidden-480">Name</th>
+                                        <th>Email</th>
+                                        <th>Address</th>
+                                        <th>Phone Number</th>
+                                        <th>Group</th>
                                         <th>Action</th>
 
                                     </tr>
@@ -183,31 +99,18 @@
                                                     <input type="checkbox"/>
                                                 </td>
                                                 <td>{{ $item->id }}</td>
-                                                <td>{{ $item->title }}</td>
-                                                <td>@if($item->type_id == 1)
-                                                        {{ $item->type_id = "LINH KIỆN MÁY TÍNH" }}
-                                                    @elseif($item->type_id == 2)
-                                                        {{ $item->type_id = "MÁY TÍNH XÁCH TAY" }}
-                                                    @elseif($item->type_id == 3)
-                                                        {{ $item->type_id = "MÁY TÍNH ĐỂ BÀN" }}
-                                                    @elseif($item->type_id == 4)
-                                                        {{ $item->type_id = "GAMEGEAR-COOLING" }}
-                                                    @elseif($item->type_id == 5)
-                                                        {{ $item->type_id = "GAMES NET" }}
-                                                    @elseif($item->type_id == 6)
-                                                        {{ $item->type_id = "THIẾT BỊ NGHE NHÌN" }}
-                                                    @elseif($item->type_id == 7)
-                                                        {{ $item->type_id = "THIẾT BỊ LƯU TRỮ" }}
-                                                    @elseif($item->type_id == 8)
-                                                        {{ $item->type_id = "THIẾT BỊ MẠNG" }}
-                                                    @elseif($item->type_id == 9)
-                                                        {{ $item->type_id = "THIẾT BỊ VĂN PHÒNG" }}
-                                                    @elseif($item->type_id == 10)
-                                                        {{ $item->type_id = "THIẾT BỊ KHÁC" }}
+                                                <td>{{ $item->name }}</td>
+                                                <td>{{ $item->email }}</td>
+                                                <td>{{ $item->address }}</td>
+                                                <td>{{ $item->phone }}</td>
+                                                <td>@if($item->group_id == 1)
+                                                        {{ $item->group_id = "ADMIN" }}
+                                                    @elseif($item->group_id == 2)
+                                                        {{ $item->group_id = "USER" }}
                                                     @endif</td>
                                                 <td>
-                                                    {!! Form::open([ 'method'=>'DELETE' , 'url' =>'admin/category/'.$item->id,'role'=>'from' ]) !!}
-                                                    <a href="{{ url('admin/category/'.$item->id.'/edit') }}"
+                                                    {!! Form::open([ 'method'=>'DELETE' , 'url' =>'admin/users/'.$item->id,'role'=>'from' ]) !!}
+                                                    <a href="{{ url('admin/users/'.$item->id.'/edit') }}"
                                                        class="btn">Edit</a>
                                                     <button type="submit" value="DELETE"
                                                             onclick="return confirm('Are you sure?');">DELETE

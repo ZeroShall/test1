@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title')  Create | Shop0317E  @endsection
+@section('title')  Create Purchase Invoice| Shop0317E  @endsection
 @section('content')
     <div class="main-content">
         <div class="main-content-inner">
@@ -11,7 +11,7 @@
                     </li>
 
                     <li>
-                        <a href="{{ url('admin/category') }}">Category</a>
+                        <a href="{{ url('admin/purchase') }}">Purchase Invoice</a>
                     </li>
                     <li class="active">Create</li>
                 </ul><!-- /.breadcrumb -->
@@ -119,48 +119,18 @@
 
                 <div class="page-header">
                     <h1>
-                        Create Category
+                        Create Purchase Invoice
                     </h1>
                 </div><!-- /.page-header -->
 
                 <div class="row">
                     <div class="col-xs-12">
                         <!-- PAGE CONTENT BEGINS -->
-                        {!! Form::open(['type' => 'POST', 'url' => 'admin/category', 'role' => 'form']) !!}
-                        <form class="form-horizontal" role="form">
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Name </label>
-                                <div class="col-sm-9">
-                                    <input type="text" name="title" id="form-field-1" placeholder="Category Name" required
-                                           class="col-xs-10 col-sm-5">
-                                </div>
-                            </div>
+                        {!! Form::open(['method' => 'POST', 'url' => 'admin/purchase', 'files' => true, 'role' => 'form']) !!}
+                            @include('admin.purchase.form')
+                        {!! Form::close() !!}
 
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1-1">Type</label>
-                                <div class="col-sm-9">
-                                    <select name="type_id">
-                                        <option value="1">LINK KIỆN MÁY TÍNH</option>
-                                        <option value="2">MÁY TÍNH XÁCH TAY</option>
-                                        <option value="3">MÁY TÍNH ĐỂ BÀN</option>
-                                        <option value="4">GAMEGEAR-COOLING</option>
-                                        <option value="5">GAMES NET</option>
-                                        <option value="6">THIẾT BỊ NGHE NHÌN</option>
-                                        <option value="7">THIẾT BỊ LƯU TRỮ</option>
-                                        <option value="8">THIẾT BỊ MẠNG</option>
-                                        <option value="9">THIẾT BỊ VĂN PHÒNG</option>
-                                        <option value="10">THIẾT BỊ KHÁC</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-9">
-                                    <input type="submit" class="btnSave" value="Save"  />
-                                </div>
-                            </div>
-                            {!! Form::close() !!}
-
-                            <div class="space-4"></div>
+                        <div class="space-4"></div>
                         </form>
                     </div>
                 </div>

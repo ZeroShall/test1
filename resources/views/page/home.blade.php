@@ -58,14 +58,13 @@
                                 <img src="uploads/product/{{ $item->thumbnail }}" alt="">
                                 <h2>{{ number_format($item->price) }}</h2>
                                 <p>{{ $item->name }}</p>
-                                <a href="{{ url('product_detail/'.$item->id) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>
-                                    Chi Tiết Sản Phẩm</a>
+                                <a href="{{ url('cart/add/'.$item->id) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>
+                                    Thêm Vào Giỏ</a>
                             </div>
                         </div>
                         <div class="choose">
                             <ul class="nav nav-pills nav-justified">
-                                <li><a href="#"><i class="fa fa-plus-square"></i>Yêu Thích</a></li>
-                                <li><a href="{{ url('cart/add/'.$item->id) }}"><i class="fa fa-plus-square"></i>Thêm Vào Giỏ</a></li>
+                                <li><a href="{{ url('product_detail/'.$item->id) }}"><i class="fa fa-plus-square"></i>Chi Tiết Sản Phẩm</a></li>
                             </ul>
                         </div>
                     </div>
@@ -95,14 +94,13 @@
                                         <img src="uploads/product/{{ $item->thumbnail }}" alt="">
                                         <h2>{{ number_format($item->price) }}</h2>
                                         <p>{{ $item->name }}</p>
-                                        <a href="{{ url('product_detail/'.$item->id) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>
-                                            Chi Tiết Sản Phẩm</a>
+                                        <a href="{{ url('cart/add/'.$item->id) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>
+                                            Thêm Vào Giỏ</a>
                                     </div>
                                 </div>
                                 <div class="choose">
                                     <ul class="nav nav-pills nav-justified">
-                                        <li><a href="#"><i class="fa fa-plus-square"></i>Yêu Thích</a></li>
-                                        <li><a href="{{ url('cart/add/'.$item->id) }}"><i class="fa fa-plus-square"></i>Thêm Vào Giỏ</a></li>
+                                        <li><a href="{{ url('product_detail/'.$item->id) }}"><i class="fa fa-plus-square"></i>Chi Tiết Sản Phẩm</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -120,8 +118,14 @@
                                         <img src="uploads/product/{{ $item->thumbnail }}" alt="">
                                         <h2>{{ number_format($item->price) }}</h2>
                                         <p>{{ $item->name }}</p>
+                                        <a href="{{ url('cart/add/'.$item->id) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>
+                                            Thêm Vào Giỏ</a>
                                     </div>
-
+                                </div>
+                                <div class="choose">
+                                    <ul class="nav nav-pills nav-justified">
+                                        <li><a href="{{ url('product_detail/'.$item->id) }}"><i class="fa fa-plus-square"></i>Chi Tiết Sản Phẩm</a></li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -137,8 +141,14 @@
                                         <img src="uploads/product/{{ $item->thumbnail }}" alt="">
                                         <h2>{{ number_format($item->price) }}</h2>
                                         <p>{{ $item->name }}</p>
+                                        <a href="{{ url('cart/add/'.$item->id) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>
+                                            Thêm Vào Giỏ</a>
                                     </div>
-
+                                </div>
+                                <div class="choose">
+                                    <ul class="nav nav-pills nav-justified">
+                                        <li><a href="{{ url('product_detail/'.$item->id) }}"><i class="fa fa-plus-square"></i>Chi Tiết Sản Phẩm</a></li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -155,8 +165,14 @@
                                         <img src="uploads/product/{{ $item->thumbnail }}" alt="">
                                         <h2>{{ number_format($item->price) }}</h2>
                                         <p>{{ $item->name }}</p>
+                                        <a href="{{ url('cart/add/'.$item->id) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>
+                                            Thêm Vào Giỏ</a>
                                     </div>
-
+                                </div>
+                                <div class="choose">
+                                    <ul class="nav nav-pills nav-justified">
+                                        <li><a href="{{ url('product_detail/'.$item->id) }}"><i class="fa fa-plus-square"></i>Chi Tiết Sản Phẩm</a></li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>

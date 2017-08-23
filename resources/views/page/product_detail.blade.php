@@ -21,10 +21,10 @@
                     <span>
 					<label>Quantity:</label>
 					<input type="number" style="width: 40px ;text-align: center " value="{{ $detail->qty }}"  />
-					<button type="button" class="btn btn-fefault cart">
+					<a href="{{ url('cart/add/'.$detail->id) }}" class="btn btn-fefault cart">
 							<i class="fa fa-shopping-cart"></i>
 							Thêm vào giỏ
-					</button>
+					</a>
 				</span>
                     <p><b>Trạng Thái : </b>@if($detail->inventorynumber > 0)
                             Còn hàng

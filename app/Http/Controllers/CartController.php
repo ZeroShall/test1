@@ -16,7 +16,8 @@ class CartController extends Controller
      */
     public function index()
     {
-        return view('cart.index');
+        $product = Product::all();
+        return view('cart.index',compact('product'));
     }
 
     /**
@@ -103,8 +104,17 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        Cart::destroy();
 
+        $product = Product::findOrFail($id);
+        if ($product->id != null) {
+            foreach (Cart::content() as $key => $item) {
+                if ($item->id == $product->id) {
+                    Cart::remove($key);
+                    break;
+                }
+            }
+        }
+        return redirect()->back();
 
     }
 }

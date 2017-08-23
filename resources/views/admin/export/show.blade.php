@@ -1,5 +1,5 @@
-@extends('layouts.admin.layout')
-@section('title') Export Invoice | Shop Computer @endsection
+@extends('layouts.admin')
+@section('title') Export Invoice | Shop0317E @endsection
 @section('content')
     <div class="main-content">
         <div class="main-content-inner">
@@ -9,33 +9,41 @@
                         <i class="ace-icon fa fa-home home-icon"></i>
                         <a href="{{url('home')}}">Home</a>
                     </li>
+
                     <li>
                         <a href="{{ url('admin/export') }}">Export Invoice List</a>
                     </li>
+
                 </ul><!-- /.breadcrumb -->
+
+
                 {!! Form::open(['method' => 'GET', 'url' => 'admin/export']) !!}
                 <div class="nav-search" id="nav-search">
                     <form class="form-search">
-                        <span class="input-icon">
-                            <input type="text"
-                                name="keyword"
-                                @if(Request::has('keyword'))
-                                value="{{ Request::get('keyword') }}"
-                                @endif
-                                class="nav-search-input"
-                                id="nav-search-input"
-                                placeholder="Search ..."
-                            />
-                            <i class="ace-icon fa fa-search nav-search-icon"></i>
-                            <button type="submit" id="btnSearch">Search</button>
-                        </span>
+                                    <span class="input-icon">
+                                        <input type="text"
+                                               name="keyword"
+                                               @if(Request::has('keyword'))
+                                               value="{{ Request::get('keyword') }}"
+                                               @endif
+                                               class="nav-search-input"
+                                               id="nav-search-input"
+                                               placeholder="Search ..."
+
+                                        />
+                                        <i class="ace-icon fa fa-search nav-search-icon"></i>
+                                        <button type="submit" id="btnSearch">Search</button>
+                                    </span>
                     </form>
                 </div>
                 <!-- /.nav-search -->
                 {!! Form::close() !!}
+
             </div>
 
             <div class="page-content">
+
+
                 <div class="page-header">
                     <h1>
                         Export Invoice List
